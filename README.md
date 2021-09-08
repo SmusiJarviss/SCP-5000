@@ -31,7 +31,7 @@ _AddingTargetBroadcast_
 | SpawnChance | int | SCP-5000 spawn chance. |
 | SpawnBroadcast | string | Broadcast when you spawn as SCP-5000. |
 | SpawnCassie  | string  | when you spawn as SCP-5000. |
-| EnableEffect  | bool  | Enable or Diable the Player Effect. |
+| EnableEffect  | bool  | Enable or Disable the Player Effect. |
 | Color  | string  | Set the badge color.  |
 | Badge  | string  | Set the badge name  |
 | Hp  | int | Health amount of SCP-5000  |
