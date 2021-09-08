@@ -61,5 +61,6 @@ _AddingTargetBroadcast_ \
 
 If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ#5666**
 
-
   
+## Release
+  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.0.0
