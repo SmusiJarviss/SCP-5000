@@ -51,7 +51,7 @@ namespace SCP5000.Component
             }
             catch (Exception e)
             {
-                Log.Error($"Couldn't destroy JumpComponent: {e}");
+                Log.Error($"Couldn't destroy PlayerComponent: {e}");
             }
         }
 
