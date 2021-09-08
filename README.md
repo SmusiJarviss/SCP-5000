@@ -9,7 +9,7 @@ Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Conf
 _SpawnChance_ \
 _SpawnBroadcast_ \
 _SpawnCassie_ \
-_EnableEffetc_ \
+_EnableEffect_ \
 _Badge Color & Name_ \
 _Hp_ \
 _TeslaTriggerable_\
@@ -21,10 +21,8 @@ _FuseTime_\
 _ExplosionNumber_\
 _RecontainCassie_\
 _AddingTarget_\
-_AddingTargetBroadcast_ \
+_AddingTargetBroadcast_ 
 
-**Author**\
-ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ#5666
 ## Config
 
 | Name  | Type | Description | 
