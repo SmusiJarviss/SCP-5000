@@ -1,6 +1,5 @@
 ﻿using Exiled.API.Features;
 using System;
-using PlayerEvents = Exiled.Events.Handlers.Player;
 using ServerEvents = Exiled.Events.Handlers.Server;
 
 namespace SCP5000
@@ -21,9 +20,6 @@ namespace SCP5000
         {
             Singleton = this;
 
-            if (!Singleton.Config.IsEnabled)
-                return;
-
             RegisterEvents();
             base.OnEnabled();
         }
@@ -38,19 +34,11 @@ namespace SCP5000
         {
             Handlers = new Handlers();
             ServerEvents.RoundStarted += Handlers.RoundStarted;
-            PlayerEvents.TriggeringTesla += Handlers.OnTriggeringTesla;
-            PlayerEvents.EnteringFemurBreaker += Handlers.OnEnteringFemurBreaker;
-            PlayerEvents.Dying += Handlers.OnDying;
-            Exiled.Events.Handlers.Scp096.AddingTarget += Handlers.OnAddingTarget;
         }
 
         private void UnregisterEvents()
         {
             ServerEvents.RoundStarted -= Handlers.RoundStarted;
-            PlayerEvents.TriggeringTesla -= Handlers.OnTriggeringTesla;
-            PlayerEvents.EnteringFemurBreaker -= Handlers.OnEnteringFemurBreaker;
-            PlayerEvents.Dying -= Handlers.OnDying;
-            Exiled.Events.Handlers.Scp096.AddingTarget -= Handlers.OnAddingTarget;
             Handlers = null;
         }
     }

@@ -2,7 +2,6 @@
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using System;
-using System.Linq;
 
 namespace SCP5000.Command
 {
@@ -19,7 +18,7 @@ namespace SCP5000.Command
         {
             if (!sender.CheckPermission("scp5000.spawn"))
             {
-                response = "Missing Permission.";
+                response = "You don't have permission to execute this command.";
                 return false;
             }
 
@@ -29,29 +28,20 @@ namespace SCP5000.Command
                 return false;
             }
 
-            Player player = null;
-
-            if (int.TryParse(arguments.ElementAt(0), out int id))
+            if (Player.Get(arguments.At(0)) is Player player)
             {
-                player = Player.Get(id);
-
-                if (player is null)
-                {
-                    response = "Player not found.";
-                    return false;
-                }
-
                 if (API.API.Players.Contains(player))
                 {
-                    response = "Player already SCP-5000";
+                    response = $"{player.Nickname} already SCP-5000!";
                     return false;
                 }
 
                 API.API.SpawnSCP5000(player);
+                response = $"Player {player.Nickname} has become SCP-5000";
+                return true;
             }
-
-            response = $"{player.Nickname} spawned as SCP-5000.";
-            return true;
+            response = "Player not found";
+            return false;
         }
     }
 }
