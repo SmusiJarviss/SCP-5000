@@ -54,11 +54,11 @@ namespace SCP5000
         [Description("Cassie when SCP-5000 automatic destruction start.")]
         public string ExplosionCassie { get; set; } = "pitch_0.949 .g3 scp 5 0 0 0 automatic destruction in 5 . 4 . 3 . 2 . 1";
 
-        [Description("Set the fuse delay of ExplosionNumber. (Delay of the Explosion)")]
+        [Description("Set the fuse delay of auto destruction. (Delay of the Explosion)")]
         public float FuseTime { get; set; } = 14.5f;
 
-        [Description("ExplosionNumber is the quantity of explosions. A low number recommended :).")]
-        public int ExplosionNumber { get; set; } = 1;
+        [Description("ExplosionEnable set if auto destruction is enabled.")]
+        public bool ExplosionEnable { get; set; } = true;
 
         [Description("Cassie when SCP-5000 has been recontained.")]
         public string RecontainCassie { get; set; } = "pitch_0.949 .g3 scp 5 0 0 0 has been recontained successfully .g3";

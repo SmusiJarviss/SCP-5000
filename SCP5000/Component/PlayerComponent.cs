@@ -124,11 +124,12 @@ namespace SCP5000.Component
         public void OnDying(DyingEventArgs ev)
         {
             if (ev.Target != Player) return;
-            if (!API.SCP5000API.Players.Contains(Player)) return;
 
-            if (SCP5000.Singleton.Config.ExplosionNumber < 1) return;
-            Cassie.Message(SCP5000.Singleton.Config.ExplosionCassie);
-            new ExplosiveGrenade(ItemType.GrenadeHE, Player) { FuseTime = SCP5000.Singleton.Config.FuseTime }.SpawnActive(Player.Position, Player);
+            if (API.SCP5000API.Players.Contains(Player) && SCP5000.Singleton.Config.ExplosionEnable)
+            {
+                Cassie.Message(SCP5000.Singleton.Config.ExplosionCassie);
+                new ExplosiveGrenade(ItemType.GrenadeHE, Player) { FuseTime = SCP5000.Singleton.Config.FuseTime }.SpawnActive(Player.Position, Player);
+            }
         }
 
         public void OnAddingTarget(AddingTargetEventArgs ev)
