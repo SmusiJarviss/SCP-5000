@@ -30,13 +30,13 @@ namespace SCP5000.Command
 
             if (Player.Get(arguments.At(0)) is Player player)
             {
-                if (API.API.Players.Contains(player))
+                if (API.SCP5000API.Players.Contains(player))
                 {
                     response = $"{player.Nickname} already SCP-5000!";
                     return false;
                 }
 
-                API.API.SpawnSCP5000(player);
+                API.SCP5000API.SpawnSCP5000(player);
                 response = $"Player {player.Nickname} has become SCP-5000";
                 return true;
             }

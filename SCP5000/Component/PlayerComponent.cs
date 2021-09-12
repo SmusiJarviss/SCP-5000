@@ -16,7 +16,8 @@ namespace SCP5000.Component
         {
             SubscribeEvents();
             Player = Player.Get(gameObject);
-            API.API.Players.Add(Player);
+            API.SCP5000API.Players.Add(Player);
+            Log.Debug("Awake finito");
         }
 
         private void Start() => SpawnSCP5000();
@@ -27,17 +28,13 @@ namespace SCP5000.Component
                 Destroy();
         }
 
-        private void FixedUpdate()
-        {
-            if (Player != null) return;
-            Destroy();
-        }
-
         private void PartiallyDestroy()
         {
             UnsubscribeEvents();
-            API.API.Players.Remove(Player);
-            RemoveBadge();
+            API.SCP5000API.Players.Remove(Player);
+            Player.IsBypassModeEnabled = false;
+            Player.RankName = null;
+            Player.RankColor = null;
         }
 
         private void OnDestroy() => PartiallyDestroy();
@@ -76,7 +73,6 @@ namespace SCP5000.Component
         {
             if (ev.Target != Player) return;
             Cassie.Message(SCP5000.Singleton.Config.RecontainCassie, false, true);
-            Player.IsBypassModeEnabled = false;
             Destroy();
         }
 
@@ -86,7 +82,7 @@ namespace SCP5000.Component
                 Player.Role = RoleType.FacilityGuard;
             Player.Broadcast(SCP5000.Singleton.Config.SpawnBroadcast.Duration, SCP5000.Singleton.Config.SpawnBroadcast.Content.Replace("{player}", Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
             Timing.CallDelayed(0.5f, () => Player.ResetInventory(SCP5000.Singleton.Config.Inventory));
-            Player.Ammo.Add(ItemType.Ammo556x45, 40);
+            Player.Ammo.Add(ItemType.Ammo762x39, 40);
             if (SCP5000.Singleton.Config.EnableEffect)
             {
                 Player.EnableEffect(EffectType.SinkHole);
@@ -105,47 +101,43 @@ namespace SCP5000.Component
             Player.RankColor = SCP5000.Singleton.Config.Color;
         }
 
-        internal void RemoveBadge()
-        {
-            Player.RankName = null;
-            Player.RankColor = null;
-        }
-
         public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
         {
-            if (API.API.Players.Contains(Player) && !SCP5000.Singleton.Config.TeslaTriggerable)
+            if (ev.Player != Player) return;
+            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.TeslaTriggerable)
             {
                 ev.IsTriggerable = false;
-                ev.Player.Broadcast(SCP5000.Singleton.Config.TeslaBroadcast.Duration, SCP5000.Singleton.Config.TeslaBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
+                Player.Broadcast(SCP5000.Singleton.Config.TeslaBroadcast.Duration, SCP5000.Singleton.Config.TeslaBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
             }
         }
 
         public void OnEnteringFemurBreaker(EnteringFemurBreakerEventArgs ev)
         {
-            if (API.API.Players.Contains(Player) && !SCP5000.Singleton.Config.FemurBreakerTriggerable)
+            if (ev.Player != Player) return;
+            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.FemurBreakerTriggerable)
             {
                 ev.IsAllowed = false;
-                ev.Player.Broadcast(SCP5000.Singleton.Config.FemurBreakerBroadcast.Duration, SCP5000.Singleton.Config.FemurBreakerBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
+                Player.Broadcast(SCP5000.Singleton.Config.FemurBreakerBroadcast.Duration, SCP5000.Singleton.Config.FemurBreakerBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
             }
         }
 
         public void OnDying(DyingEventArgs ev)
         {
-            if (!API.API.Players.Contains(Player)) return;
+            if (ev.Target != Player) return;
+            if (!API.SCP5000API.Players.Contains(Player)) return;
 
+            if (SCP5000.Singleton.Config.ExplosionNumber < 1) return;
             Cassie.Message(SCP5000.Singleton.Config.ExplosionCassie);
-            for (int i = 0; i < SCP5000.Singleton.Config.ExplosionNumber; i++)
-            {
-                new ExplosiveGrenade(ItemType.GrenadeHE, ev.Target) { FuseTime = SCP5000.Singleton.Config.FuseTime }.SpawnActive(ev.Target.Position, ev.Target);
-            }
+            new ExplosiveGrenade(ItemType.GrenadeHE, Player) { FuseTime = SCP5000.Singleton.Config.FuseTime }.SpawnActive(Player.Position, Player);
         }
 
         public void OnAddingTarget(AddingTargetEventArgs ev)
         {
-            if (API.API.Players.Contains(Player) && !SCP5000.Singleton.Config.AddingTarget)
+            if (ev.Target != Player) return;
+            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.AddingTarget)
             {
                 ev.IsAllowed = false;
-                ev.Target.Broadcast(SCP5000.Singleton.Config.AddingTargetBroadcast.Duration, SCP5000.Singleton.Config.AddingTargetBroadcast.Content, Broadcast.BroadcastFlags.Normal, true);
+                Player.Broadcast(SCP5000.Singleton.Config.AddingTargetBroadcast.Duration, SCP5000.Singleton.Config.AddingTargetBroadcast.Content, Broadcast.BroadcastFlags.Normal, true);
             }
         }
     }

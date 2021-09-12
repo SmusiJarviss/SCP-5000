@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SCP5000.API
 {
-    internal class API
+    internal class SCP5000API
     {
         public static List<Player> Players { get; private set; } = new List<Player>();
 
