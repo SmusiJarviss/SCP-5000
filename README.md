@@ -50,7 +50,7 @@ _AddingTargetBroadcast_
 
 | Commands  | Args | Permission | Description | 
 | ------------- | ------------- | ------------- | ------------- |
-| scp5000  | id  | scp5000.spawn | Spawn a player as SCP-5000 |
+| scp5000  | id/name  | scp5000.spawn | Spawn a player as SCP-5000 |
 
   
 ## API
@@ -61,4 +61,4 @@ If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ
 
   
 ## Release
-  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.0.2
+  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.0.4
