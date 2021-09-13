@@ -17,7 +17,6 @@ namespace SCP5000.Component
             SubscribeEvents();
             Player = Player.Get(gameObject);
             API.SCP5000API.Players.Add(Player);
-            Log.Debug("Awake finito");
         }
 
         private void Start() => SpawnSCP5000();
