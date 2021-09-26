@@ -46,7 +46,7 @@ namespace SCP5000.Component
             }
             catch (Exception e)
             {
-                Log.Error($"Couldn't destroy JumpComponent: {e}");
+                Log.Error($"Couldn't destroy PlayerComponent: {e}");
             }
         }
 
@@ -103,7 +103,7 @@ namespace SCP5000.Component
         public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
         {
             if (ev.Player != Player) return;
-            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.TeslaTriggerable)
+            if (!SCP5000.Singleton.Config.TeslaTriggerable)
             {
                 ev.IsTriggerable = false;
                 Player.Broadcast(SCP5000.Singleton.Config.TeslaBroadcast.Duration, SCP5000.Singleton.Config.TeslaBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
@@ -113,7 +113,7 @@ namespace SCP5000.Component
         public void OnEnteringFemurBreaker(EnteringFemurBreakerEventArgs ev)
         {
             if (ev.Player != Player) return;
-            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.FemurBreakerTriggerable)
+            if (!SCP5000.Singleton.Config.FemurBreakerTriggerable)
             {
                 ev.IsAllowed = false;
                 Player.Broadcast(SCP5000.Singleton.Config.FemurBreakerBroadcast.Duration, SCP5000.Singleton.Config.FemurBreakerBroadcast.Content.Replace("{player}", ev.Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
@@ -124,7 +124,7 @@ namespace SCP5000.Component
         {
             if (ev.Target != Player) return;
 
-            if (API.SCP5000API.Players.Contains(Player) && SCP5000.Singleton.Config.ExplosionEnable)
+            if (SCP5000.Singleton.Config.ExplosionEnable)
             {
                 Cassie.Message(SCP5000.Singleton.Config.ExplosionCassie);
                 new ExplosiveGrenade(ItemType.GrenadeHE, Player) { FuseTime = SCP5000.Singleton.Config.FuseTime }.SpawnActive(Player.Position, Player);
@@ -134,7 +134,7 @@ namespace SCP5000.Component
         public void OnAddingTarget(AddingTargetEventArgs ev)
         {
             if (ev.Target != Player) return;
-            if (API.SCP5000API.Players.Contains(Player) && !SCP5000.Singleton.Config.AddingTarget)
+            if (!SCP5000.Singleton.Config.AddingTarget)
             {
                 ev.IsAllowed = false;
                 Player.Broadcast(SCP5000.Singleton.Config.AddingTargetBroadcast.Duration, SCP5000.Singleton.Config.AddingTargetBroadcast.Content, Broadcast.BroadcastFlags.Normal, true);
