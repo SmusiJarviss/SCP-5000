@@ -9,6 +9,8 @@ Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Conf
 _SpawnChance_ \
 _SpawnBroadcast_ \
 _SpawnCassie_ \
+_Inventory_ \
+_Role_ \
 _EnableEffect_ \
 _Badge Color & Name_ \
 _Hp_ \
@@ -31,6 +33,8 @@ _AddingTargetBroadcast_
 | SpawnChance | int | SCP-5000 spawn chance. |
 | SpawnBroadcast | string | Broadcast when you spawn as SCP-5000. |
 | SpawnCassie  | string  | when you spawn as SCP-5000. |
+| Inventory  | List  | Inventory of SCP-5000. |
+| Role  | Enum  | What role have to be picked when the round start and spawned as SCP-5000. |
 | EnableEffect  | bool  | Enable or Disable the Player Effect. |
 | Color  | string  | Set the badge color.  |
 | Badge  | string  | Set the badge name  |
@@ -51,10 +55,12 @@ _AddingTargetBroadcast_
 | Commands  | Args | Permission | Description | 
 | ------------- | ------------- | ------------- | ------------- |
 | scp5000  | id/name  | scp5000.spawn | Spawn a player as SCP-5000 |
+| killscp5000  | id/name  | scp5000.kill | Kill a player as SCP-5000 |
 
   
 ## API
 - **SpawnSCP5000**: Spawn a Player as SCP-5000
+- **KillSCP5000**: Kill a Player as SCP-5000
 - **Players**: type List<Player> (Player as SCP-5000)
 
 If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ#5666**
