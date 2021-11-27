@@ -67,4 +67,4 @@ If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ
 
   
 ## Release
-  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.0.5
+  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.1.0
