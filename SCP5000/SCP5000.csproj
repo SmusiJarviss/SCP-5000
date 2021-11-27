@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\SCP5000API.cs" />
+    <Compile Include="Command\KillSCP5000.cs" />
     <Compile Include="Command\SpawnSCP5000.cs" />
     <Compile Include="Component\PlayerComponent.cs" />
     <Compile Include="Handlers.cs" />
