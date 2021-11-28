@@ -1,7 +1,7 @@
 
 # SCP-5000
 
-Plugin for SCP: Secret Laboratory, work with Exiled 3.0.0
+Plugin for SCP: Secret Laboratory, work with Exiled 3.7.2
 
 Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Config.
 
