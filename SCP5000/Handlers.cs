@@ -23,7 +23,6 @@ namespace SCP5000
                 API.SCP5000API.SpawnSCP5000(player);
                 API.SCP5000API.Players.Add(player);
             });
-
         }
     }
 }
