@@ -9,6 +9,8 @@ namespace SCP5000
     {
         public void RoundStarted()
         {
+            API.SCP5000API.Players.Clear();
+
             Timing.CallDelayed(0.5f, () =>
             {
                 if (API.SCP5000API.Players.Any() ||
