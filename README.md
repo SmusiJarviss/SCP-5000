@@ -1,7 +1,7 @@
 
 # SCP-5000
 
-Plugin for SCP: Secret Laboratory, work with Exiled 4.0.0
+Plugin for SCP: Secret Laboratory, work with Exiled 4.1.2
 
 Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Config.
 
@@ -33,8 +33,8 @@ _AddingTargetBroadcast_
 | SpawnChance | int | SCP-5000 spawn chance. |
 | SpawnBroadcast | string | Broadcast when you spawn as SCP-5000. |
 | SpawnCassie  | string  | when you spawn as SCP-5000. |
-| Inventory  | List  | Inventory of SCP-5000. |
-| Role  | Enum  | What role have to be picked when the round start and spawned as SCP-5000. |
+| Inventory  | ItemType  | Inventory of SCP-5000. |
+| Role  | RoleType  | What role have to be picked when the round start and spawned as SCP-5000. |
 | EnableEffect  | bool  | Enable or Disable the Player Effect. |
 | Color  | string  | Set the badge color.  |
 | Badge  | string  | Set the badge name  |
@@ -67,4 +67,4 @@ If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ
 
   
 ## Release
-  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.1.0
+  https://github.com/SmusiJarviss/SCP-5000/releases/tag/1.1.1
