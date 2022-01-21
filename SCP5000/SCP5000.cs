@@ -9,8 +9,8 @@ namespace SCP5000
         public override string Prefix => "SCP-5000";
         public override string Name => "SCP-5000";
         public override string Author => "Smusi Jarvis";
-        public override Version Version => new Version(1, 2, 0);
-        public override Version RequiredExiledVersion => new Version(4, 1, 2);
+        public override Version Version => new Version(1, 1, 1);
+        public override Version RequiredExiledVersion => new Version(4, 2, 3);
 
         public Handlers Handlers { get; private set; }
 
