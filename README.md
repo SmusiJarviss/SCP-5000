@@ -1,7 +1,7 @@
 
 # SCP-5000
 
-Plugin for SCP: Secret Laboratory, work with Exiled 4.1.2
+Plugin for SCP: Secret Laboratory, work with Exiled 4.2.3
 
 Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Config.
 
@@ -9,6 +9,7 @@ Welcome, this Plugin add SCP-5000 with many features. Fully editable in the Conf
 _SpawnChance_ \
 _SpawnBroadcast_ \
 _SpawnCassie_ \
+_SpawnRoom_ \
 _Inventory_ \
 _Role_ \
 _EnableEffect_ \
@@ -30,9 +31,11 @@ _AddingTargetBroadcast_
 | Name  | Type | Description | 
 | ------------- | ------------- | ------------- |
 | IsEnabled  | bool  | Enable or Disable the plugin. |
+| EnableCassie  | bool  | Enable or Disable cassie. |
 | SpawnChance | int | SCP-5000 spawn chance. |
 | SpawnBroadcast | string | Broadcast when you spawn as SCP-5000. |
 | SpawnCassie  | string  | when you spawn as SCP-5000. |
+| SpawnRoom  | RoomType  | Choose where spawn as SCP-5000. |
 | Inventory  | ItemType  | Inventory of SCP-5000. |
 | Role  | RoleType  | What role have to be picked when the round start and spawned as SCP-5000. |
 | EnableEffect  | bool  | Enable or Disable the Player Effect. |
@@ -45,6 +48,7 @@ _AddingTargetBroadcast_
 | FemurBreakerBroadcast  | string  | Set the Broadcast when SCP-5000 attempt to enter the Femur Breaker.  |
 | ExplosionCassie  | string  | Cassie when SCP-5000 automatic destruction start.  |
 | FuseTime  | float | Set the fuse delay of ExplosionNumber.  |
+| ExplosionEnable  | bool | Enable or Disable if SCP-5000 will explode when he's dying.  |
 | ExplosionNumber  | int | ExplosionNumber is the quantity of explosions. |
 | RecontainCassie | string | Cassie when SCP-5000 has been recontained.|
 | AddingTarget | bool | Set if SCP-5000 can trigger SCP-096. |
@@ -59,9 +63,10 @@ _AddingTargetBroadcast_
 
   
 ## API
-- **SpawnSCP5000**: Spawn a Player as SCP-5000
-- **KillSCP5000**: Kill a Player as SCP-5000
-- **Players**: type List<Player> (Player as SCP-5000)
+- **TrySpawnScp5000**: Spawn a Player as SCP-5000
+- **TryKillSScp5000**: Kill a Player as SCP-5000
+- **Players**: type Hashset<Player> (Players as SCP-5000)
+- **IsScp5000**: Check if Player is SCP-5000
 
 If you found bug please contact me on discord: **ꜱᴍᴜꜱɪ ᴊᴀʀᴠɪꜱ#5666**
 
