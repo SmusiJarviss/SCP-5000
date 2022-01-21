@@ -22,7 +22,7 @@ namespace SCP5000
                 if (players.IsEmpty()) return;
                 Player player = players[UnityEngine.Random.Range(0, players.Count)];
 
-                API.SCP5000API.SpawnSCP5000(player);
+                API.SCP5000API.TrySpawnSCP5000(player);
                 API.SCP5000API.Players.Add(player);
             });
         }

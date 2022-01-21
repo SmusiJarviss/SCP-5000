@@ -1,21 +1,44 @@
 ﻿using Exiled.API.Features;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SCP5000.API
 {
-    public class SCP5000API
+    static class SCP5000API
     {
-        internal static List<Player> Players { get; } = new List<Player>();
+        /// <summary>
+        /// <see cref="Player"/> as SCP-5000.
+        /// </summary>
+        public static HashSet<Player> Players => Player.List.Where(player => player.SessionVariables.ContainsKey("scp5000")).ToHashSet();
 
-        public static void SpawnSCP5000(Player player)
+        /// <summary>
+        /// Check if <see cref="Player"/> is SCP-5000.
+        /// </summary>
+        /// <param name="player"> to check.</param>
+        /// <returns><see langword="true"/> if is SCP-5000, otherwise <see langword="false"/></returns>
+        public static bool IsScp5000(this Player player) => player.SessionVariables.ContainsKey("scp5000");
+
+        /// <summary>
+        /// Try spawn <see cref="Player"/> as SCP-5000.
+        /// </summary>
+        /// <param name="player"> to spawn.</param>
+        /// <returns><see langword="true"/> if successful, otherwise <see langword="false"/></returns>
+        public static bool TrySpawnSCP5000(this Player player)
         {
-            if (Players.Contains(player)) return;
-            player.GameObject.AddComponent<Component.PlayerComponent>();
+            if (!Players.Contains(player))
+                player.GameObject.AddComponent<Component.SCP5000Component>();
+            return true;
         }
 
-        public static void KillSCP5000(Player player)
+        /// <summary>
+        /// Try kill <see cref="Player"/> as SCP-5000.
+        /// </summary>
+        /// <param name="player"> to kill.</param>
+        /// <returns><see langword="true"/> if successful, otherwise <see langword="false"/></returns>
+        public static bool TryKillScp5000(this Player player)
         {
-            if (player.GameObject.TryGetComponent(out Component.PlayerComponent PlayerComponent)) PlayerComponent.Destroy();
+            if (player.GameObject.TryGetComponent(out Component.SCP5000Component PlayerComponent)) PlayerComponent.Destroy();
+            return true;
         }
     }
 }

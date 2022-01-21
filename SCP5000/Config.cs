@@ -1,4 +1,5 @@
-﻿using Exiled.API.Interfaces;
+﻿using Exiled.API.Enums;
+using Exiled.API.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -9,6 +10,9 @@ namespace SCP5000
         [Description("Plugin Enable/Disable.")]
         public bool IsEnabled { get; set; } = true;
 
+        [Description("Enable/Disable all Cassie Message")]
+        public bool EnableCassie { get; set; } = true;
+
         [Description("Spawnchance of SCP-5000.")]
         public float SpawnChance { get; set; } = 60f;
 
@@ -17,6 +21,9 @@ namespace SCP5000
 
         [Description("Cassie when you spawn as SCP-5000.")]
         public string SpawnCassie { get; set; } = "pitch_0.949 .g3 scp 5 0 0 0 breached containment .g3";
+
+        [Description("Set the room where SCP-5000 will be spawned.")]
+        public RoomType SpawnRoom { get; set; } = RoomType.HczServers;
 
         [Description("Choose what role have to be picked when the round start and spawned as SCP-5000.")]
         public RoleType Role { get; set; } = RoleType.ClassD;
@@ -56,6 +63,9 @@ namespace SCP5000
 
         [Description("Cassie when SCP-5000 automatic destruction start.")]
         public string ExplosionCassie { get; set; } = "pitch_0.949 .g3 scp 5 0 0 0 automatic destruction in 5 . 4 . 3 . 2 . 1";
+
+        [Description("ExplosionNumber is the quantity of explosions of auto destruction. (low number raccomended)")]
+        public int ExplosionNumber { get; set; } = 3;
 
         [Description("Set the fuse delay of auto destruction. (Delay of the Explosion)")]
         public float FuseTime { get; set; } = 14.5f;
