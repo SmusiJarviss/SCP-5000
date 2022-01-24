@@ -55,6 +55,7 @@ namespace SCP5000.Component
             Player.IsBypassModeEnabled = false;
             Player.RankName = default;
             Player.RankColor = default;
+            Player.DisableAllEffects();
         }
 
         private void OnDestroy() => PartiallyDestroy();
@@ -67,7 +68,7 @@ namespace SCP5000.Component
             }
             catch (Exception e)
             {
-                Log.Error($"Couldn't destroy PlayerComponent: {e}");
+                Log.Error($"Couldn't destroy SCP5000Component: {e}");
             }
         }
 

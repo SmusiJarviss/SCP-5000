@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SCP5000.API
 {
-    static class SCP5000API
+    public static class SCP5000API
     {
         /// <summary>
         /// <see cref="Player"/> as SCP-5000.
@@ -22,23 +22,27 @@ namespace SCP5000.API
         /// Try spawn <see cref="Player"/> as SCP-5000.
         /// </summary>
         /// <param name="player"> to spawn.</param>
-        /// <returns><see langword="true"/> if successful, otherwise <see langword="false"/></returns>
-        public static bool TrySpawnSCP5000(this Player player)
+        public static void TrySpawnSCP5000(this Player player)
         {
-            if (!Players.Contains(player))
-                player.GameObject.AddComponent<Component.SCP5000Component>();
-            return true;
+            if (Players.Contains(player) || player is null)
+                return;
+
+            player.SessionVariables.Add("scp5000", true);
+            player.GameObject.AddComponent<Component.SCP5000Component>();
         }
 
         /// <summary>
         /// Try kill <see cref="Player"/> as SCP-5000.
         /// </summary>
         /// <param name="player"> to kill.</param>
-        /// <returns><see langword="true"/> if successful, otherwise <see langword="false"/></returns>
-        public static bool TryKillScp5000(this Player player)
+        public static void TryKillScp5000(this Player player)
         {
+            if (!Players.Contains(player) || player is null)
+                return;
+
+            player.Kill("Killed by Server.");
+            player.SessionVariables.Remove("scp5000");
             if (player.GameObject.TryGetComponent(out Component.SCP5000Component PlayerComponent)) PlayerComponent.Destroy();
-            return true;
         }
     }
 }
