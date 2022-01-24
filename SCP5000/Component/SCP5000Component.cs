@@ -19,6 +19,7 @@ namespace SCP5000.Component
             SubscribeEvents();
             Player = Player.Get(gameObject);
             API.SCP5000API.Players.Add(Player);
+            Player.SessionVariables.Add("scp5000", true);
         }
 
         private void Start()
@@ -52,6 +53,7 @@ namespace SCP5000.Component
         {
             UnsubscribeEvents();
             API.SCP5000API.Players.Remove(Player);
+            Player.SessionVariables.Remove("scp5000");
             Player.IsBypassModeEnabled = false;
             Player.RankName = default;
             Player.RankColor = default;

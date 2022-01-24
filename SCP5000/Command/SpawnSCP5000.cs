@@ -37,7 +37,6 @@ namespace SCP5000.Command
                 }
 
                 API.SCP5000API.TrySpawnSCP5000(player);
-                API.SCP5000API.Players.Add(player);
                 response = $"{player.Nickname} Has been spawned as SCP-5000";
                 return true;
             }

@@ -38,7 +38,6 @@ namespace SCP5000.Command
 
                 player.SetRole(RoleType.Spectator);
                 API.SCP5000API.TryKillScp5000(player);
-                API.SCP5000API.Players.Remove(player);
                 response = $"{player.Nickname} Has no longer SCP-5000";
                 return true;
             }
