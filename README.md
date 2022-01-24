@@ -64,7 +64,7 @@ _AddingTargetBroadcast_
   
 ## API
 - **TrySpawnScp5000**: Spawn a Player as SCP-5000
-- **TryKillSScp5000**: Kill a Player as SCP-5000
+- **TryKillScp5000**: Kill a Player as SCP-5000
 - **Players**: type Hashset<Player> (Players as SCP-5000)
 - **IsScp5000**: Check if Player is SCP-5000
 
