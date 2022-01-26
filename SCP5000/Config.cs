@@ -13,7 +13,7 @@ namespace SCP5000
         [Description("Enable or disable all Cassie related to SCP-5000.")]
         public bool EnableCassie { get; set; } = true;
 
-        [Description("Enable or disable the bypass mode that will be gived to the player as SCP-5000.")]
+        [Description("Enable or disable the bypass mode that will be given to the player as SCP-5000.")]
         public bool EnableBypass { get; set; } = true;
 
         [Description("Chance to spawn as SCP-5000.")]
@@ -31,7 +31,7 @@ namespace SCP5000
         [Description("What will be the player role as SCP-5000.")]
         public RoleType Role { get; set; } = RoleType.ClassD;
 
-        [Description("Items that will be gived to the player as SCP-5000.")]
+        [Description("Items that will be given to the player as SCP-5000.")]
         public List<ItemType> Inventory { get; set; } = new List<ItemType>()
         {
             ItemType.GunAK,
@@ -40,23 +40,23 @@ namespace SCP5000
             ItemType.GrenadeHE,
         };
 
-        [Description("Effects that will be gived to the player as SCP-5000.")]
+        [Description("Effects that will be given to the player as SCP-5000.")]
         public List<EffectType> Effects { get; set; } = new List<EffectType>()
         {
             EffectType.Deafened,
             EffectType.Ensnared,
         };
 
-        [Description("Enable or disable the badge that will be gived to the player as SCP-5000.")]
+        [Description("Enable or disable the badge that will be given to the player as SCP-5000.")]
         public bool BadgeEnabled { get; set; } = true;
 
-        [Description("Badge Color that will be gived to the player as SCP-5000.")]
+        [Description("Badge Color that will be given to the player as SCP-5000.")]
         public string Color { get; set; } = "red";
 
-        [Description("Badge Name that will be gived to the player as SCP-5000.")]
+        [Description("Badge Name that will be given to the player as SCP-5000.")]
         public string Badge { get; set; } = "SCP-5000";
 
-        [Description("HP that will be gived to the player as SCP-5000.")]
+        [Description("Health that will be given to the player as SCP-5000.")]
         public int HP { get; set; } = 1500;
 
         [Description("Choose if SCP-5000 can trigger Tesla Gate.")]
@@ -87,9 +87,9 @@ namespace SCP5000
         public string RecontainCassie { get; set; } = "pitch_0.949 .g3 scp 5 0 0 0 has been recontained successfully .g3";
 
         [Description("Choose if player as SCP-5000 can be a target of SCP-096.")]
-        public bool CanBe096Target { get; set; } = false;
+        public bool CanTrigger096 { get; set; } = false;
 
         [Description("Broadcast that will be shown to the player as SCP-5000 after seeing SCP-096. Only available when <AddingTarget> has been set to false.")]
-        public Exiled.API.Features.Broadcast CanBe096Broadcast { get; set; } = new Exiled.API.Features.Broadcast("<size=30><b><color=cyan>SCP-5000</color> protect you from <color=red>SCP-096...</color></b></size>", 5);
+        public Exiled.API.Features.Broadcast CanTrigger096Broadcast { get; set; } = new Exiled.API.Features.Broadcast("<size=30><b><color=cyan>SCP-5000</color> protect you from <color=red>SCP-096...</color></b></size>", 5);
     }
 }
