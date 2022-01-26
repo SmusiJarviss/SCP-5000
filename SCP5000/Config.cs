@@ -13,6 +13,9 @@ namespace SCP5000
         [Description("Enable or disable all Cassie related to SCP-5000.")]
         public bool EnableCassie { get; set; } = true;
 
+        [Description("Enable or disable the bypass mode that will be gived to the player as SCP-5000.")]
+        public bool EnableBypass { get; set; } = true;
+
         [Description("Chance to spawn as SCP-5000.")]
         public float SpawnChance { get; set; } = 60f;
 
