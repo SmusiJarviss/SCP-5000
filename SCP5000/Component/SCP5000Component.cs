@@ -34,9 +34,15 @@ namespace SCP5000.Component
             Player.EnableEffects(SCP5000.Singleton.Config.Effects);
             Player.Ammo.Add(ItemType.Ammo762x39, 40);
 
-            Player.IsBypassModeEnabled = true;
+            Player.IsBypassModeEnabled = SCP5000.Singleton.Config.EnableBypass;
             Player.Health = Player.MaxHealth = SCP5000.Singleton.Config.HP;
-            SetBadge();
+
+            if (SCP5000.Singleton.Config.BadgeEnabled)
+            {
+                Player.BadgeHidden = false;
+                Player.RankName = SCP5000.Singleton.Config.Badge;
+                Player.RankColor = SCP5000.Singleton.Config.Color;
+            }
 
             if (SCP5000.Singleton.Config.EnableCassie)
                 Cassie.Message(SCP5000.Singleton.Config.SpawnCassie, false, true);
@@ -99,14 +105,6 @@ namespace SCP5000.Component
             {
                 Cassie.Message(SCP5000.Singleton.Config.RecontainCassie, false, true);
             }
-        }
-
-        private void SetBadge()
-        {
-            if (SCP5000.Singleton.Config.BadgeEnabled)
-                Player.BadgeHidden = false;
-                Player.RankName = SCP5000.Singleton.Config.Badge;
-                Player.RankColor = SCP5000.Singleton.Config.Color;
         }
 
         private void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
