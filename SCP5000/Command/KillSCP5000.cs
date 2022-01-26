@@ -30,13 +30,12 @@ namespace SCP5000.Command
 
             if (Player.Get(arguments.At(0)) is Player player)
             {
-                if (!API.SCP5000API.Players.Contains(player))
+                if (!API.SCP5000API.TryKillScp5000(player, ""))
                 {
                     response = $"{player.Nickname} is not SCP-5000!";
                     return false;
                 }
 
-                player.SetRole(RoleType.Spectator);
                 API.SCP5000API.TryKillScp5000(player, "Killed by Server");
                 response = $"{player.Nickname} Has no longer SCP-5000";
                 return true;
