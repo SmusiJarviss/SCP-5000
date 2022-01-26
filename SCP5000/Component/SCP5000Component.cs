@@ -138,10 +138,10 @@ namespace SCP5000.Component
 
         private void OnAddingTarget(AddingTargetEventArgs ev)
         {
-            if (ev.Target != Player || SCP5000.Singleton.Config.CanBe096Target) return;
+            if (ev.Target != Player || SCP5000.Singleton.Config.CanTrigger096) return;
 
             ev.IsAllowed = false;
-            Player.Broadcast(SCP5000.Singleton.Config.CanBe096Broadcast.Duration, SCP5000.Singleton.Config.CanBe096Broadcast.Content, Broadcast.BroadcastFlags.Normal, true);
+            Player.Broadcast(SCP5000.Singleton.Config.CanTrigger096Broadcast.Duration, SCP5000.Singleton.Config.CanTrigger096Broadcast.Content, Broadcast.BroadcastFlags.Normal, true);
         }
     }
 }
