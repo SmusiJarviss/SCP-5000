@@ -126,7 +126,6 @@ namespace SCP5000.Component
         private void OnDying(DyingEventArgs ev)
         {
             if (ev.Target != Player || !SCP5000.Singleton.Config.ExplosionEnable) return;
-            Player.Health = 100;
 
             for (int i = 0; i < SCP5000.Singleton.Config.ExplosionNumber; i++)
             {
