@@ -18,7 +18,6 @@ namespace SCP5000.Component
         {
             SubscribeEvents();
             Player = Player.Get(gameObject);
-            API.SCP5000API.Players.Add(Player);
             Player.SessionVariables.Add("scp5000", true);
         }
 
@@ -26,21 +25,21 @@ namespace SCP5000.Component
         {
             if (Player.Role != SCP5000.Singleton.Config.Role)
                 Player.Role = SCP5000.Singleton.Config.Role;
+
             Player.Broadcast(SCP5000.Singleton.Config.SpawnBroadcast.Duration, SCP5000.Singleton.Config.SpawnBroadcast.Content.Replace("{player}", Player.Nickname), Broadcast.BroadcastFlags.Normal, true);
+
             Timing.CallDelayed(0.5f, () => Player.ResetInventory(SCP5000.Singleton.Config.Inventory));
             Timing.CallDelayed(0.5f, () => Player.Position = Map.Rooms.FirstOrDefault(x => x.Type == SCP5000.Singleton.Config.SpawnRoom).Position + Vector3.up * 1.5f);
+
+            Player.EnableEffects(SCP5000.Singleton.Config.Effects);
             Player.Ammo.Add(ItemType.Ammo762x39, 40);
-            if (SCP5000.Singleton.Config.EnableEffect)
-            {
-                Player.EnableEffect(EffectType.Disabled);
-                Player.EnableEffect(EffectType.Deafened);
-            }
+
             Player.IsBypassModeEnabled = true;
             Player.Health = Player.MaxHealth = SCP5000.Singleton.Config.HP;
             SetBadge();
+
             if (SCP5000.Singleton.Config.EnableCassie)
                 Cassie.Message(SCP5000.Singleton.Config.SpawnCassie, false, true);
-
         }
 
         private void FixedUpdate()
@@ -52,7 +51,8 @@ namespace SCP5000.Component
         private void PartiallyDestroy()
         {
             UnsubscribeEvents();
-            API.SCP5000API.Players.Remove(Player);
+            if (Player is null) return;
+
             Player.SessionVariables.Remove("scp5000");
             Player.IsBypassModeEnabled = false;
             Player.RankName = default;
@@ -95,19 +95,18 @@ namespace SCP5000.Component
         private void OnDied(DiedEventArgs ev)
         {
             if (ev.Target != Player) return;
-            API.SCP5000API.Players.Remove(Player);
             if (SCP5000.Singleton.Config.EnableCassie)
             {
                 Cassie.Message(SCP5000.Singleton.Config.RecontainCassie, false, true);
             }
-            Destroy();
         }
 
         private void SetBadge()
         {
-            Player.BadgeHidden = false;
-            Player.RankName = SCP5000.Singleton.Config.Badge;
-            Player.RankColor = SCP5000.Singleton.Config.Color;
+            if (SCP5000.Singleton.Config.BadgeEnabled)
+                Player.BadgeHidden = false;
+                Player.RankName = SCP5000.Singleton.Config.Badge;
+                Player.RankColor = SCP5000.Singleton.Config.Color;
         }
 
         private void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
@@ -129,8 +128,7 @@ namespace SCP5000.Component
         private void OnDying(DyingEventArgs ev)
         {
             if (ev.Target != Player || !SCP5000.Singleton.Config.ExplosionEnable) return;
-            Player.Health = Player.MaxHealth = 100;
-            Player.EnableEffect(EffectType.Ensnared);
+            Player.Health = 100;
 
             for (int i = 0; i < SCP5000.Singleton.Config.ExplosionNumber; i++)
             {
@@ -143,10 +141,10 @@ namespace SCP5000.Component
 
         private void OnAddingTarget(AddingTargetEventArgs ev)
         {
-            if (ev.Target != Player || SCP5000.Singleton.Config.AddingTarget) return;
+            if (ev.Target != Player || SCP5000.Singleton.Config.CanBe096Target) return;
 
             ev.IsAllowed = false;
-            Player.Broadcast(SCP5000.Singleton.Config.AddingTargetBroadcast.Duration, SCP5000.Singleton.Config.AddingTargetBroadcast.Content, Broadcast.BroadcastFlags.Normal, true);
+            Player.Broadcast(SCP5000.Singleton.Config.CanBe096Broadcast.Duration, SCP5000.Singleton.Config.CanBe096Broadcast.Content, Broadcast.BroadcastFlags.Normal, true);
         }
     }
 }

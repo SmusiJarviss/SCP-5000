@@ -17,13 +17,12 @@ namespace SCP5000
                 UnityEngine.Random.Range(0, 101) >= SCP5000.Singleton.Config.SpawnChance)
                     return;
 
-                List<Player> players = Player.List.Where(x => x.Role == SCP5000.Singleton.Config.Role && !API.SCP5000API.Players.Contains(x)).ToList();
+                List<Player> players = Player.Get(SCP5000.Singleton.Config.Role).ToList();
 
                 if (players.IsEmpty()) return;
                 Player player = players[UnityEngine.Random.Range(0, players.Count)];
 
                 API.SCP5000API.TrySpawnSCP5000(player);
-                API.SCP5000API.Players.Add(player);
             });
         }
     }
