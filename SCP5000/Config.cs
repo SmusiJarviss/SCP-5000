@@ -44,7 +44,7 @@ namespace SCP5000
         public List<EffectType> Effects { get; set; } = new List<EffectType>()
         {
             EffectType.Deafened,
-            EffectType.Ensnared,
+            EffectType.Concussed,
         };
 
         [Description("Enable or disable the badge that will be given to the player as SCP-5000.")]

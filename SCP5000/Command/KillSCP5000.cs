@@ -30,15 +30,16 @@ namespace SCP5000.Command
 
             if (Player.Get(arguments.At(0)) is Player player)
             {
-                if (!API.SCP5000API.TryKillScp5000(player, ""))
+                if (!API.SCP5000API.TryKillScp5000(player, "Killed By Server"))
                 {
                     response = $"{player.Nickname} is not SCP-5000!";
                     return false;
                 }
-
-                API.SCP5000API.TryKillScp5000(player, "Killed by Server");
-                response = $"{player.Nickname} Has no longer SCP-5000";
-                return true;
+                else
+                {
+                    response = $"{player.Nickname} Has no longer SCP-5000";
+                    return true;
+                }
             }
             response = "Player not found";
             return false;
