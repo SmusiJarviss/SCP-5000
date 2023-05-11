@@ -15,14 +15,12 @@ namespace SCP5000.Component
         private int grenadeCounter;
 
         internal Player Player { get; private set; }
-        public LineRenderer LineRenderer;
 
         private void Awake()
         {
             SubscribeEvents();
             Player = Player.Get(gameObject);
             Player.SessionVariables.Add("scp5000", true);
-            LineRenderer = gameObject.AddComponent<LineRenderer>();
         }
 
         private void Start()
