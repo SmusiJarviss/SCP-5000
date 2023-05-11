@@ -1,5 +1,6 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Interfaces;
+using PlayerRoles;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -29,7 +30,7 @@ namespace SCP5000
         public RoomType SpawnRoom { get; set; } = RoomType.HczServers;
 
         [Description("What will be the player role as SCP-5000.")]
-        public RoleType Role { get; set; } = RoleType.ClassD;
+        public RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
 
         [Description("Items that will be given to the player as SCP-5000.")]
         public List<ItemType> Inventory { get; set; } = new List<ItemType>()
@@ -38,6 +39,7 @@ namespace SCP5000
             ItemType.Medkit,
             ItemType.Flashlight,
             ItemType.GrenadeHE,
+            ItemType.Ammo762x39
         };
 
         [Description("Effects that will be given to the player as SCP-5000.")]
@@ -91,5 +93,23 @@ namespace SCP5000
 
         [Description("Broadcast that will be shown to the player as SCP-5000 after seeing SCP-096. Only available when <AddingTarget> has been set to false.")]
         public Exiled.API.Features.Broadcast CanTrigger096Broadcast { get; set; } = new Exiled.API.Features.Broadcast("<size=30><b><color=cyan>SCP-5000</color> protect you from <color=red>SCP-096...</color></b></size>", 5);
+
+        [Description("Set how many grenade SCP-5000 can spawn")]
+        public int GrenadeLimit { get; set; } = 5;
+
+        [Description("Broadcast that will be shown to the player as SCP-5000 after using the grenade ability.")]
+        public Exiled.API.Features.Broadcast GrenadeBroadcast { get; set; } = new Exiled.API.Features.Broadcast("<size=30><b>You threw a grenade, you have: <color=blue>%num</color> grenade left.</b></size>", 5);
+
+        [Description("Random room that will be used to teleport SCP-5000 after using the grenade hotkey ability")]
+        public List<RoomType> TeleportRooms { get; set; } = new List<RoomType>()
+        {
+            RoomType.LczClassDSpawn,
+            RoomType.HczHid,
+            RoomType.EzCrossing,
+            RoomType.Hcz049,
+            RoomType.Surface,
+        };
+
+        public bool Debug { get; set; } = false;
     }
 }

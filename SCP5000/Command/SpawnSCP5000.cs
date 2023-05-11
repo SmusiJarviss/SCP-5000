@@ -35,11 +35,9 @@ namespace SCP5000.Command
                     response = $"{player.Nickname} Has been already spawned as SCP-5000!";
                     return false;
                 }
-                else
-                {
-                    response = $"{player.Nickname} Has been spawned as SCP-5000";
-                    return true;
-                }
+
+                response = $"{player.Nickname} Has been spawned as SCP-5000";
+                return true;
             }
 
             response = "Player not found";

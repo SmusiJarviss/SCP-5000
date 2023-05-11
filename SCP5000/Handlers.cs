@@ -19,7 +19,9 @@ namespace SCP5000
 
                 List<Player> players = Player.Get(SCP5000.Singleton.Config.Role).ToList();
 
-                if (players.IsEmpty()) return;
+                if (players.IsEmpty())
+                    return;
+
                 Player player = players[UnityEngine.Random.Range(0, players.Count)];
 
                 API.SCP5000API.TrySpawnSCP5000(player);
